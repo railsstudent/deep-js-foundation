@@ -1,15 +1,17 @@
-var Helpers = {
+var obj = {
 	maxVisibleWorkDescriptionLength: 20,
 	minWorkDescriptionLength: 5,
-	maxWorkTime: 600,
+	maxWorkTime: 600
+};
 
+var Helpers = {
 	validateWorkEntry(description,minutes) {
-		if (description.length < Helpers.minWorkDescriptionLength) return false;
+		if (description.length < this.minWorkDescriptionLength) return false;
 		if (
 			/^\s*$/.test(minutes) ||
 			Number.isNaN(Number(minutes)) ||
 			minutes < 0 ||
-			minutes > Helpers.maxWorkTime
+			minutes > this.maxWorkTime
 		) {
 			return false;
 		}
@@ -17,8 +19,8 @@ var Helpers = {
 		return true;
 	},
 	formatWorkDescription(description) {
-		if (description.length > Helpers.maxVisibleWorkDescriptionLength) {
-			description = `${description.substr(0,Helpers.maxVisibleWorkDescriptionLength)}...`;
+		if (description.length > this.maxVisibleWorkDescriptionLength) {
+			description = `${description.substr(0,this.maxVisibleWorkDescriptionLength)}...`;
 		}
 		return description;
 	},
@@ -30,6 +32,13 @@ var Helpers = {
 		return `${hours}:${minutes}`;
 	}
 };
+
+var original = Helpers;
+var Helpers = {
+		validateWorkEntry: original.validateWorkEntry.bind(obj),
+		formatWorkDescription: original.formatWorkDescription.bind(obj),
+		formatTime: original.formatTime.bind(obj)
+}
 
 var UI = setupUI();
 UI.init();
