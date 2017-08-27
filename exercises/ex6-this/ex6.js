@@ -1,10 +1,7 @@
-var obj = {
+var Helpers = {
 	maxVisibleWorkDescriptionLength: 20,
 	minWorkDescriptionLength: 5,
-	maxWorkTime: 600
-};
-
-var Helpers = {
+	maxWorkTime: 600,
 	validateWorkEntry(description,minutes) {
 		if (description.length < this.minWorkDescriptionLength) return false;
 		if (
@@ -33,12 +30,12 @@ var Helpers = {
 	}
 };
 
-var original = Helpers;
+/*var original = Helpers;
 var Helpers = {
 		validateWorkEntry: original.validateWorkEntry.bind(obj),
 		formatWorkDescription: original.formatWorkDescription.bind(obj),
 		formatTime: original.formatTime.bind(obj)
-}
+}*/
 
 var UI = setupUI();
 UI.init();
