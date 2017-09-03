@@ -32,7 +32,7 @@ function validateWorkEntry(description,minutes) {
 	if (description.length < 5) {
 		return false;
 	}
-	if (Number.isNaN(minutes)) {
+	if (/^\s*$/.test(minutes) || Number.isNaN(minutes)) {
 		return false;
 	}
 
