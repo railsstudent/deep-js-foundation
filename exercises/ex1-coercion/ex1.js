@@ -20,7 +20,7 @@ function initUI() {
 
 		$workEntryDescription.val("");
 		$workEntryTime.val("");
-		addWorkToProject(projectId,description,Number(minutes));
+		addWorkToProject(Number(projectId),description,Number(minutes));
 		$workEntryDescription[0].focus();
 	};
 
@@ -32,7 +32,7 @@ function validateWorkEntry(description,minutes) {
 	if (description.length < 5) {
 		return false;
 	}
-	if (isNaN(minutes)) {
+	if (Number.isNaN(minutes)) {
 		return false;
 	}
 
@@ -45,7 +45,7 @@ function validateWorkEntry(description,minutes) {
 
 function addProject(description) {
 	var projectId = Math.round(Math.random()*1E4);
-	var projectEntryData = { id: projectId, description: description, work: [] };
+	var projectEntryData = { id: projectId, description: description, work: [], time: 0 };
 	projects.push(projectEntryData);
 
 	addProjectToList(projectEntryData);
@@ -70,7 +70,7 @@ function addProjectSelection(projectEntryData) {
 
 function findProjectEntry(projectId) {
 	for (var i = 0; i < projects.length; i++) {
-		if (projects[i].id == projectId) {
+		if (projects[i].id === projectId) {
 			return projects[i];
 		}
 	}
