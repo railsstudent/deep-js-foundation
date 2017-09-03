@@ -159,8 +159,8 @@ function formatWorkDescription(description) {
 function formatTime(time) {
 	var hours = Math.floor(time / 60);
 	var minutes = time % 60;
-	if (minutes < 10) minutes = `0${minutes}`;
 	if (hours == 0 && minutes == 0) return "";
+	if (minutes < 10) minutes = `0${minutes}`;
 	return `${hours}:${minutes}`;
 }
 
